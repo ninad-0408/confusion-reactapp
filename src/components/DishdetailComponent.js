@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardBody, CardText, CardTitle, CardFooter } from 'reactstrap';
 
-function RenderDish({dish}) {
+function RenderDish({ dish }) {
     if (dish != null) {
         const comments = dish.comments.map((comment) => {
             return (
@@ -44,7 +44,7 @@ function RenderDish({dish}) {
 const Dishdetail = (props) => {
     return (
         <div>
-            <RenderDish dish={props.selectedDish}/>
+            <RenderDish dish={props.selectedDish} />
         </div>
     );
 }
