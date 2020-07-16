@@ -16,7 +16,7 @@ class CommentForm extends Component {
             rating: '1',
             author: '',
             comment: '',
-            isModalOpen: true
+            isModalOpen: false
         };
         this.handleModalOpen = this.handleModalOpen.bind(this);
     }
