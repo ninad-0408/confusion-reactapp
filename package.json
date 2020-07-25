@@ -2,7 +2,7 @@
 	"name": "confusion",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://ninad-0408.github.io/confusion-reactapp/",
+	"homepage": "https://ninad-0408.github.io/confusion-reactapp",
 	"engines": {
 		"node": "12.14.0",
 		"npm": "6.13.4"
