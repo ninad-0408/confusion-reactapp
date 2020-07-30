@@ -3,6 +3,7 @@ import { Card, CardImg, CardImgOverlay, CardBody, CardText, CardTitle, CardFoote
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -99,13 +100,19 @@ function RenderDish({ dish }) {
 
     return (
         <div className="col-12 col-sm-5 m-1">
-            <Card>
-                <CardImg width="100%" src={dish.image} alt={dish.name} />
-                <CardBody>
-                    <CardTitle><h2>{dish.name}</h2></CardTitle>
-                    <CardText><p>{dish.description}</p></CardText>
-                </CardBody>
-            </Card>
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+                <Card>
+                    <CardImg width="100%" src={dish.image} alt={dish.name} />
+                    <CardBody>
+                        <CardTitle><h2>{dish.name}</h2></CardTitle>
+                        <CardText><p>{dish.description}</p></CardText>
+                    </CardBody>
+                </Card>
+            </FadeTransform>
         </div>
     );
 }
@@ -114,10 +121,14 @@ function RenderComments({ comments, dishId, addComment }) {
 
     const commes = comments.map((comment) => {
         return (
-            <div className='col-12 ml-1' key={comment.id}>
-                <p>{comment.comment}</p>
-                <p>--{comment.author},{new Intl.DateTimeFormat('en-US-indian', { year: 'numeric', month: 'short', date: '2-digit' }).format(new Date(Date.parse(comment.date)))}</p>
-            </div>
+            <Stagger in>
+                <div className='col-12 ml-1' key={comment.id}>
+                    <Fade in>
+                        <p>{comment.comment}</p>
+                        <p>--{comment.author},{new Intl.DateTimeFormat('en-US-indian', { year: 'numeric', month: 'short', date: '2-digit' }).format(new Date(Date.parse(comment.date)))}</p>
+                    </Fade>
+                </div>
+            </Stagger>
         );
     });
 
@@ -134,49 +145,49 @@ function RenderComments({ comments, dishId, addComment }) {
 
 const Dishdetail = (props) => {
     if (props.isLoading) {
-        return(
+        return (
             <div className="container">
-                <div className="row">            
+                <div className="row">
                     <Loading />
                 </div>
             </div>
         );
     }
     else if (props.errMess) {
-        return(
+        return (
             <div className="container">
-                <div className="row">            
+                <div className="row">
                     <h4>{props.errMess}</h4>
                 </div>
             </div>
         );
     }
-    else if (props.dish != null) 
-    return (
-        <div className="container">
-            <div className="row">
-                <div className="col-12">
-                    <br />
-                    <Breadcrumb>
-                        <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
-                    </Breadcrumb>
+    else if (props.dish != null)
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <br />
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                            <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                        </Breadcrumb>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <h3>{props.dish.name}</h3>
+                        <hr />
+                    </div>
+                </div>
+                <div className='row'>
+                    <RenderDish dish={props.dish} />
+                    <RenderComments addComment={props.addComment} dishId={props.dish.id} comments={props.comments} />
                 </div>
             </div>
-            <div className="row">
-                <div className="col-12">
-                    <h3>{props.dish.name}</h3>
-                    <hr />
-                </div>
-            </div>
-            <div className='row'>
-                <RenderDish dish={props.dish} />
-                <RenderComments addComment={props.addComment} dishId={props.dish.id} comments={props.comments} />
-            </div>
-        </div>
 
-    );
+        );
 }
 
 export default Dishdetail;

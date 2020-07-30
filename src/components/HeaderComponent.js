@@ -39,7 +39,7 @@ class Header extends Component {
     render() {
         return (
             <>
-                <Navbar dark expand='sm'>
+                <Navbar dark expand='sm' className='sticky-top'>
                     <div className="container">
                         <NavbarBrand href="/" className='mr-auto'>
                             <img src="assets/images/logo.png" alt="Restorante Con Fusion" className="img-fluid" height='30' width='41' />
