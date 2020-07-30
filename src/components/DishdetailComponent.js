@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import { baseUrl } from '../shared/baseUrl';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -106,7 +107,7 @@ function RenderDish({ dish }) {
                     exitTransform: 'scale(0.5) translateY(-50%)'
                 }}>
                 <Card>
-                    <CardImg width="100%" src={dish.image} alt={dish.name} />
+                    <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle><h2>{dish.name}</h2></CardTitle>
                         <CardText><p>{dish.description}</p></CardText>
@@ -122,12 +123,12 @@ function RenderComments({ comments, dishId, addComment }) {
     const commes = comments.map((comment) => {
         return (
             <Stagger in>
-                <div className='col-12 ml-1' key={comment.id}>
-                    <Fade in>
+                <Fade in>
+                    <div className='col-12 ml-1' key={comment.id}>
                         <p>{comment.comment}</p>
                         <p>--{comment.author},{new Intl.DateTimeFormat('en-US-indian', { year: 'numeric', month: 'short', date: '2-digit' }).format(new Date(Date.parse(comment.date)))}</p>
-                    </Fade>
-                </div>
+                    </div>
+                </Fade>
             </Stagger>
         );
     });
