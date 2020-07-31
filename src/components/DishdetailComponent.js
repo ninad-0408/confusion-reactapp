@@ -35,7 +35,7 @@ class CommentForm extends Component {
         this.setState({
             isModalOpen: !this.state.isModalOpen
         });
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -118,7 +118,7 @@ function RenderDish({ dish }) {
     );
 }
 
-function RenderComments({ comments, dishId, addComment }) {
+function RenderComments({ comments, dishId, postComment }) {
 
     const commes = comments.map((comment) => {
         return (
@@ -138,7 +138,7 @@ function RenderComments({ comments, dishId, addComment }) {
             <Card>
                 {commes}
             </Card>
-            <CommentForm dishId={dishId} addComment={addComment} />
+            <CommentForm dishId={dishId} postComment={postComment} />
         </div>
     )
 }
@@ -184,7 +184,7 @@ const Dishdetail = (props) => {
                 </div>
                 <div className='row'>
                     <RenderDish dish={props.dish} />
-                    <RenderComments addComment={props.addComment} dishId={props.dish.id} comments={props.comments} />
+                    <RenderComments postComment={props.postComment} dishId={props.dish.id} comments={props.comments} />
                 </div>
             </div>
 
