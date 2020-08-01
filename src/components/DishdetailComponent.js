@@ -122,21 +122,21 @@ function RenderComments({ comments, dishId, postComment }) {
 
     const commes = comments.map((comment) => {
         return (
-            <Stagger in>
-                <Fade in>
-                    <div className='col-12 ml-1' key={comment.id}>
-                        <p>{comment.comment}</p>
-                        <p>--{comment.author},{new Intl.DateTimeFormat('en-US-indian', { year: 'numeric', month: 'short', date: '2-digit' }).format(new Date(Date.parse(comment.date)))}</p>
-                    </div>
-                </Fade>
-            </Stagger>
+            <Fade in>
+                <div className='col-12 ml-1' key={comment.id}>
+                    <p>{comment.comment}</p>
+                    <p>--{comment.author},{new Intl.DateTimeFormat('en-US-indian', { year: 'numeric', month: 'short', date: '2-digit' }).format(new Date(Date.parse(comment.date)))}</p>
+                </div>
+            </Fade>
         );
     });
 
     return (
         <div className='col-12 col-sm-5 m-1'>
             <Card>
-                {commes}
+                <Stagger in>
+                    {commes}
+                </Stagger>
             </Card>
             <CommentForm dishId={dishId} postComment={postComment} />
         </div>
