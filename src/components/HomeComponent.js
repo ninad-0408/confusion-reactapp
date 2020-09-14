@@ -38,6 +38,7 @@ function RenderCard({ item, isLoading, errMess }) {
 }
 
 function Home(props) {
+    document.title='Home | Confusion';
     return (
         <div className="container">
             <div className="row align-items-start">

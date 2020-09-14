@@ -35,7 +35,7 @@ function RenderLeader(leaders) {
 }
 
 function About(props) {
-
+    document.title='About | Confusion';
     return (
         <div className="container">
             <div className="row">

@@ -25,6 +25,7 @@ class Contact extends Component {
     }
 
     render() {
+    document.title='Contact | Confusion';
         return (
             <div className="container">
                 <div className="row">

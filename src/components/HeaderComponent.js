@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
-        this.state={
+        this.state = {
             isNavOpen: false,
             isModalOpen: false
         };
@@ -18,14 +18,15 @@ class Header extends Component {
     }
 
     toggleNav() {
-        if(this.state.isNavOpen == false)
-        this.setState({isNavOpen: true});
+        if (this.state.isNavOpen == false)
+            this.setState({ isNavOpen: true });
         else
-        this.setState({isNavOpen: false});
+            this.setState({ isNavOpen: false });
     }
 
     toggleModal() {
-        this.setState({isModalOpen: !this.state.isModalOpen})
+        this.setState({ isModalOpen: !this.state.isModalOpen });
+        this.setState({ isNavOpen: false });
     }
 
     handleLogin(event) {
@@ -50,22 +51,22 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                                 <NavItem>
-                                    <NavLink className='nav-link' to='/home'>
+                                    <NavLink className='nav-link' to='/home' onClick={this.toggleNav}>
                                         <span className="fa fa-home fa-lg"></span> Home
                                 </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className='nav-link' to='/aboutus'>
+                                    <NavLink className='nav-link' to='/aboutus' onClick={this.toggleNav}>
                                         <span className="fa fa-info fa-lg"></span> About Us
                                 </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className='nav-link' to='/menu'>
+                                    <NavLink className='nav-link' to='/menu' onClick={this.toggleNav}>
                                         <span className="fa fa-list fa-lg"></span> Menu
                                 </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className='nav-link' to='/contactus'>
+                                    <NavLink className='nav-link' to='/contactus' onClick={this.toggleNav}>
                                         <span className="fa fa-lg fa-address-card"></span> Contact
                                 </NavLink>
                                 </NavItem>
@@ -86,13 +87,13 @@ class Header extends Component {
                             <FormGroup row>
                                 <Label htmlFor='username' className='col-md-2'>Username</Label>
                                 <Col md={10}>
-                                <Input type='text' id='username' placeholder='Username' innerRef={(input) => this.username = input} />
+                                    <Input type='text' id='username' placeholder='Username' innerRef={(input) => this.username = input} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor='password' className='col-md-2'>Password</Label>
                                 <Col md={10}>
-                                <Input type='password' id='password' placeholder='Password' innerRef={(input) => this.password = input} />
+                                    <Input type='password' id='password' placeholder='Password' innerRef={(input) => this.password = input} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -102,7 +103,7 @@ class Header extends Component {
                                 </Label>
                             </FormGroup>
                             <FormGroup row>
-                                <Col md={{size: 10, offset: 2}}>
+                                <Col md={{ size: 10, offset: 2 }}>
                                     <Button className='btn bg-primary'>Login</Button>
                                 </Col>
                             </FormGroup>

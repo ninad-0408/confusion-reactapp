@@ -19,6 +19,7 @@ function RenderMenuItem({ dish }) {
 }
 
 const Menu = (props) => {
+    document.title='Menu | Confusion';
     const menu = props.dishes.dishes.map((dish) => {
         return (
             <div key={dish.id} className="col-12 col-sm-5 m-1">
